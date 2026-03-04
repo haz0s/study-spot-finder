@@ -8,17 +8,21 @@ interface FiltersProps {
   setSelectedType: (v: string) => void;
   selectedStatus: string;
   setSelectedStatus: (v: string) => void;
+  selectedPCStatus: string;
+  setSelectedPCStatus: (v: string) => void;
   search: string;
   setSearch: (v: string) => void;
 }
 
 const spaceTypes = ['All', 'Silent', 'Group', 'Computer Lab'];
 const statuses = ['All', 'Available', 'Moderate', 'Likely Full'];
+const pcStatuses = ['All', 'PCs Available', 'Limited PCs', 'PCs Likely Full'];
 
 export function Filters({
   buildings, selectedBuilding, setSelectedBuilding,
   selectedType, setSelectedType,
   selectedStatus, setSelectedStatus,
+  selectedPCStatus, setSelectedPCStatus,
   search, setSearch,
 }: FiltersProps) {
   return (
@@ -36,6 +40,7 @@ export function Filters({
       <SelectFilter label="Building" value={selectedBuilding} onChange={setSelectedBuilding} options={['All', ...buildings]} />
       <SelectFilter label="Type" value={selectedType} onChange={setSelectedType} options={spaceTypes} />
       <SelectFilter label="Status" value={selectedStatus} onChange={setSelectedStatus} options={statuses} />
+      <SelectFilter label="PC Status" value={selectedPCStatus} onChange={setSelectedPCStatus} options={pcStatuses} />
     </div>
   );
 }

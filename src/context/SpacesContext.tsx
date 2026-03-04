@@ -7,6 +7,8 @@ interface SpacesContextType {
   loading: boolean;
   checkIn: (id: string) => void;
   checkOut: (id: string) => void;
+  pcCheckIn: (id: string) => void;
+  pcCheckOut: (id: string) => void;
 }
 
 const SpacesContext = createContext<SpacesContextType | null>(null);
@@ -35,8 +37,24 @@ export function SpacesProvider({ children }: { children: React.ReactNode }) {
     ));
   }, []);
 
+  const pcCheckIn = useCallback((id: string) => {
+    setSpaces(prev => prev.map(s =>
+      s.id === id && s.totalPCs > 0 && s.currentPCCheckIns < s.totalPCs
+        ? { ...s, currentPCCheckIns: s.currentPCCheckIns + 1 }
+        : s
+    ));
+  }, []);
+
+  const pcCheckOut = useCallback((id: string) => {
+    setSpaces(prev => prev.map(s =>
+      s.id === id && s.currentPCCheckIns > 0
+        ? { ...s, currentPCCheckIns: s.currentPCCheckIns - 1 }
+        : s
+    ));
+  }, []);
+
   return (
-    <SpacesContext.Provider value={{ spaces, loading, checkIn, checkOut }}>
+    <SpacesContext.Provider value={{ spaces, loading, checkIn, checkOut, pcCheckIn, pcCheckOut }}>
       {children}
     </SpacesContext.Provider>
   );

@@ -7,7 +7,6 @@ export async function loadSpaces(): Promise<StudySpace[]> {
   const headers = lines[0].split(',');
 
   return lines.slice(1).map((line, idx) => {
-    // Handle commas inside quotes
     const values: string[] = [];
     let current = '';
     let inQuotes = false;
@@ -33,6 +32,9 @@ export async function loadSpaces(): Promise<StudySpace[]> {
       availableSoftware: software,
       openingHours: obj.openingHours,
       currentCheckIns: 0,
+      totalPCs: parseInt(obj.totalPCs, 10) || 0,
+      currentPCCheckIns: 0,
+      peakHours: obj.peakHours || 'N/A',
     };
   });
 }

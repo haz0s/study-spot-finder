@@ -10,8 +10,12 @@ export function Dashboard() {
     ? spaces.reduce((max, s) => getOccupancyPercent(s) > getOccupancyPercent(max) ? s : max, spaces[0])
     : null;
 
+  const totalPCs = spaces.reduce((sum, s) => sum + s.totalPCs, 0);
+  const totalPCsInUse = spaces.reduce((sum, s) => sum + s.currentPCCheckIns, 0);
+  const totalPCsAvailable = totalPCs - totalPCsInUse;
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+    <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
       <StatCard label="Total Spaces" value={totalSpaces} />
       <StatCard label="Available Seats" value={totalAvailableSeats} />
       <StatCard
@@ -19,6 +23,9 @@ export function Dashboard() {
         value={mostOccupied ? mostOccupied.name : '—'}
         sub={mostOccupied ? `${getOccupancyPercent(mostOccupied)}% full` : undefined}
       />
+      <StatCard label="Total PCs" value={totalPCs} />
+      <StatCard label="PCs In Use" value={totalPCsInUse} />
+      <StatCard label="PCs Available" value={totalPCsAvailable} />
     </div>
   );
 }
