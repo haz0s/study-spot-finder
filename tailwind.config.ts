@@ -13,7 +13,14 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        display: ['Space Grotesk', 'sans-serif'],
+        body: ['DM Sans', 'sans-serif'],
+      },
       colors: {
+        'status-available': 'hsl(var(--status-available))',
+        'status-moderate': 'hsl(var(--status-moderate))',
+        'status-full': 'hsl(var(--status-full))',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
