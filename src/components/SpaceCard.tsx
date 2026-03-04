@@ -3,9 +3,9 @@ import { StudySpace, getOccupancyPercent, getAvailabilityStatus } from '@/types/
 import { Users, Monitor, Volume2, UsersRound } from 'lucide-react';
 
 const statusColors: Record<string, string> = {
-  'Available': 'bg-status-available/10 text-status-available',
-  'Moderate': 'bg-status-moderate/10 text-status-moderate',
-  'Likely Full': 'bg-status-full/10 text-status-full',
+  'Available': 'bg-status-available/15 text-status-available',
+  'Moderate': 'bg-status-moderate/15 text-status-moderate',
+  'Likely Full': 'bg-status-full/15 text-status-full',
 };
 
 const typeIcons: Record<string, React.ReactNode> = {
@@ -20,7 +20,7 @@ export function SpaceCard({ space }: { space: StudySpace }) {
   const status = getAvailabilityStatus(space);
 
   return (
-    <div className="bg-card rounded-xl border border-border p-5 flex flex-col gap-3 hover:shadow-md transition-shadow">
+    <div className="bg-card rounded-lg border border-border p-5 flex flex-col gap-3 hover:border-primary/50 transition-colors">
       <div className="flex items-start justify-between">
         <div>
           <h3 className="font-display font-semibold text-foreground text-lg leading-tight">{space.name}</h3>
@@ -51,7 +51,7 @@ export function SpaceCard({ space }: { space: StudySpace }) {
 
       <button
         onClick={() => navigate(`/space/${space.id}`)}
-        className="mt-auto w-full py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity"
+        className="mt-auto w-full py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:opacity-90 transition-opacity"
       >
         View Details
       </button>

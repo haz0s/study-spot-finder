@@ -1,4 +1,4 @@
-import { StudySpace, getOccupancyPercent, getAvailabilityStatus } from '@/types/space';
+import { getOccupancyPercent } from '@/types/space';
 import { useSpaces } from '@/context/SpacesContext';
 
 export function Dashboard() {
@@ -25,9 +25,9 @@ export function Dashboard() {
 
 function StatCard({ label, value, sub }: { label: string; value: string | number; sub?: string }) {
   return (
-    <div className="bg-card rounded-xl border border-border p-5">
+    <div className="bg-card rounded-lg border border-border p-5">
       <p className="text-sm text-muted-foreground mb-1">{label}</p>
-      <p className="text-2xl font-display font-bold text-foreground truncate">{value}</p>
+      <p className="text-2xl font-display font-bold text-primary truncate">{value}</p>
       {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
     </div>
   );
