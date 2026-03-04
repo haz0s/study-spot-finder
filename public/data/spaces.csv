@@ -1,11 +1,11 @@
-name,building,floor,capacity,spaceType,availableSoftware,openingHours
-Main Library Hall,Central Library,1st,120,Silent,"Microsoft Office, SPSS, MATLAB",08:00 - 22:00
-Computer Lab A,Science Block,2nd,40,Computer Lab,"Python, R Studio, MATLAB, AutoCAD, VS Code",09:00 - 21:00
-Group Study Room 1,Student Union,Ground,12,Group,"Microsoft Office, Zoom",08:00 - 20:00
-Quiet Reading Room,Central Library,3rd,60,Silent,"None",07:00 - 23:00
-Engineering Lab,Engineering Building,1st,30,Computer Lab,"AutoCAD, SolidWorks, MATLAB, Python",09:00 - 18:00
-Open Collaboration Space,Student Union,1st,50,Group,"Microsoft Office, Miro, Figma",08:00 - 22:00
-Media Suite,Arts Building,2nd,20,Computer Lab,"Adobe Creative Suite, Final Cut Pro, Blender",10:00 - 20:00
-Silent Study Pod,Central Library,2nd,8,Silent,"None",07:00 - 23:00
-Seminar Room B,Business School,Ground,25,Group,"Microsoft Office, Tableau, Excel",09:00 - 19:00
-Data Science Lab,Science Block,3rd,35,Computer Lab,"Python, R Studio, Jupyter, TensorFlow, VS Code",09:00 - 21:00
+name,building,floor,capacity,spaceType,availableSoftware,openingHours,totalPCs,peakHours
+Main Library Hall,Central Library,1st,120,Silent,"Microsoft Office, SPSS, MATLAB",08:00 - 22:00,0,N/A
+Computer Lab A,Science Block,2nd,40,Computer Lab,"Python, R Studio, MATLAB, AutoCAD, VS Code",09:00 - 21:00,35,12:00–15:00
+Group Study Room 1,Student Union,Ground,12,Group,"Microsoft Office, Zoom",08:00 - 20:00,0,N/A
+Quiet Reading Room,Central Library,3rd,60,Silent,"None",07:00 - 23:00,0,N/A
+Engineering Lab,Engineering Building,1st,30,Computer Lab,"AutoCAD, SolidWorks, MATLAB, Python",09:00 - 18:00,28,10:00–13:00
+Open Collaboration Space,Student Union,1st,50,Group,"Microsoft Office, Miro, Figma",08:00 - 22:00,0,N/A
+Media Suite,Arts Building,2nd,20,Computer Lab,"Adobe Creative Suite, Final Cut Pro, Blender",10:00 - 20:00,18,13:00–16:00
+Silent Study Pod,Central Library,2nd,8,Silent,"None",07:00 - 23:00,0,N/A
+Seminar Room B,Business School,Ground,25,Group,"Microsoft Office, Tableau, Excel",09:00 - 19:00,0,N/A
+Data Science Lab,Science Block,3rd,35,Computer Lab,"Python, R Studio, Jupyter, TensorFlow, VS Code",09:00 - 21:00,30,11:00–14:00

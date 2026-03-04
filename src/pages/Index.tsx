@@ -3,7 +3,7 @@ import { useSpaces } from '@/context/SpacesContext';
 import { Dashboard } from '@/components/Dashboard';
 import { Filters } from '@/components/Filters';
 import { SpaceCard } from '@/components/SpaceCard';
-import { getOccupancyPercent, getAvailabilityStatus } from '@/types/space';
+import { getOccupancyPercent, getAvailabilityStatus, getPCAvailabilityStatus } from '@/types/space';
 import { GraduationCap } from 'lucide-react';
 
 const Index = () => {
@@ -11,6 +11,7 @@ const Index = () => {
   const [selectedBuilding, setSelectedBuilding] = useState('All');
   const [selectedType, setSelectedType] = useState('All');
   const [selectedStatus, setSelectedStatus] = useState('All');
+  const [selectedPCStatus, setSelectedPCStatus] = useState('All');
   const [search, setSearch] = useState('');
 
   const buildings = useMemo(() => [...new Set(spaces.map(s => s.building))], [spaces]);
@@ -20,12 +21,13 @@ const Index = () => {
     if (selectedBuilding !== 'All') result = result.filter(s => s.building === selectedBuilding);
     if (selectedType !== 'All') result = result.filter(s => s.spaceType === selectedType);
     if (selectedStatus !== 'All') result = result.filter(s => getAvailabilityStatus(s) === selectedStatus);
+    if (selectedPCStatus !== 'All') result = result.filter(s => s.totalPCs > 0 && getPCAvailabilityStatus(s) === selectedPCStatus);
     if (search.trim()) {
       const q = search.toLowerCase();
       result = result.filter(s => s.availableSoftware.some(sw => sw.toLowerCase().includes(q)));
     }
     return result.sort((a, b) => getOccupancyPercent(a) - getOccupancyPercent(b));
-  }, [spaces, selectedBuilding, selectedType, selectedStatus, search]);
+  }, [spaces, selectedBuilding, selectedType, selectedStatus, selectedPCStatus, search]);
 
   if (loading) {
     return (
@@ -37,7 +39,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header bar */}
       <header className="bg-primary">
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center gap-3">
           <div className="w-9 h-9 rounded-lg bg-primary-foreground/20 flex items-center justify-center">
@@ -47,7 +48,6 @@ const Index = () => {
         </div>
       </header>
 
-      {/* Hero strip */}
       <div className="bg-card border-b border-border">
         <div className="max-w-6xl mx-auto px-4 py-8">
           <h2 className="font-display text-2xl font-bold text-foreground mb-1">Find Your Study Space</h2>
@@ -66,6 +66,8 @@ const Index = () => {
           setSelectedType={setSelectedType}
           selectedStatus={selectedStatus}
           setSelectedStatus={setSelectedStatus}
+          selectedPCStatus={selectedPCStatus}
+          setSelectedPCStatus={setSelectedPCStatus}
           search={search}
           setSearch={setSearch}
         />
