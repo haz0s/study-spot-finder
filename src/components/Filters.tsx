@@ -25,35 +25,34 @@ export function Filters({
   selectedPCStatus, setSelectedPCStatus,
   search, setSearch,
 }: FiltersProps) {
+  const chipClass = "shrink-0 px-3.5 py-2 text-xs font-medium rounded-full border border-input bg-secondary text-secondary-foreground hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring transition-colors cursor-pointer";
+
   return (
-    <div className="flex flex-col sm:flex-row gap-3 mb-6 flex-wrap">
-      <div className="relative flex-1 min-w-[200px]">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+    <div className="mb-6">
+      <div className="relative mb-3">
+        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
         <input
           type="text"
-          placeholder="Search by software..."
+          placeholder="Search by software (e.g. Python, MATLAB)..."
           value={search}
           onChange={e => setSearch(e.target.value)}
-          className="w-full pl-9 pr-3 py-2 text-sm rounded-lg border border-input bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+          className="w-full pl-10 pr-4 py-2.5 text-sm rounded-xl border border-input bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-primary transition-colors"
         />
       </div>
-      <SelectFilter label="Building" value={selectedBuilding} onChange={setSelectedBuilding} options={['All', ...buildings]} />
-      <SelectFilter label="Type" value={selectedType} onChange={setSelectedType} options={spaceTypes} />
-      <SelectFilter label="Status" value={selectedStatus} onChange={setSelectedStatus} options={statuses} />
-      <SelectFilter label="PC Status" value={selectedPCStatus} onChange={setSelectedPCStatus} options={pcStatuses} />
+      <div className="flex items-center gap-2 overflow-x-auto pb-1">
+        <select value={selectedBuilding} onChange={e => setSelectedBuilding(e.target.value)} aria-label="Building" className={chipClass}>
+          {['All', ...buildings].map(o => <option key={o} value={o}>{o === 'All' ? 'Building: All' : o}</option>)}
+        </select>
+        <select value={selectedType} onChange={e => setSelectedType(e.target.value)} aria-label="Type" className={chipClass}>
+          {spaceTypes.map(o => <option key={o} value={o}>{o === 'All' ? 'Type: All' : o}</option>)}
+        </select>
+        <select value={selectedStatus} onChange={e => setSelectedStatus(e.target.value)} aria-label="Status" className={chipClass}>
+          {statuses.map(o => <option key={o} value={o}>{o === 'All' ? 'Status: All' : o}</option>)}
+        </select>
+        <select value={selectedPCStatus} onChange={e => setSelectedPCStatus(e.target.value)} aria-label="PC Status" className={chipClass}>
+          {pcStatuses.map(o => <option key={o} value={o}>{o === 'All' ? 'PC Status: All' : o}</option>)}
+        </select>
+      </div>
     </div>
-  );
-}
-
-function SelectFilter({ label, value, onChange, options }: { label: string; value: string; onChange: (v: string) => void; options: string[] }) {
-  return (
-    <select
-      value={value}
-      onChange={e => onChange(e.target.value)}
-      aria-label={label}
-      className="px-3 py-2 text-sm rounded-lg border border-input bg-card text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-    >
-      {options.map(o => <option key={o} value={o}>{o === 'All' ? `All ${label}s` : o}</option>)}
-    </select>
   );
 }
