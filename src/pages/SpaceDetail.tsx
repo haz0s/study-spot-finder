@@ -25,25 +25,30 @@ export default function SpaceDetail() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-2xl mx-auto px-4 py-8">
-        <button
-          onClick={() => navigate('/')}
-          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-6"
-        >
-          <ArrowLeft className="w-4 h-4" /> Back to spaces
-        </button>
+      {/* Header */}
+      <header className="bg-primary">
+        <div className="max-w-2xl mx-auto px-4 py-4">
+          <button
+            onClick={() => navigate('/')}
+            className="inline-flex items-center gap-1.5 text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" /> Back to spaces
+          </button>
+        </div>
+      </header>
 
-        <div className="bg-card rounded-xl border border-border p-6">
+      <div className="max-w-2xl mx-auto px-4 py-8">
+        <div className="bg-card rounded-lg border border-border p-6">
           <div className="flex items-start justify-between mb-4">
             <h1 className="font-display text-2xl font-bold text-foreground">{space.name}</h1>
             <span className={`text-sm font-medium ${statusColor}`}>{status}</span>
           </div>
 
           <div className="grid grid-cols-2 gap-3 text-sm text-muted-foreground mb-6">
-            <div className="flex items-center gap-2"><MapPin className="w-4 h-4" />{space.building}, {space.floor} Floor</div>
-            <div className="flex items-center gap-2"><Layers className="w-4 h-4" />{space.spaceType}</div>
-            <div className="flex items-center gap-2"><Users className="w-4 h-4" />Capacity: {space.capacity}</div>
-            <div className="flex items-center gap-2"><Clock className="w-4 h-4" />{space.openingHours}</div>
+            <div className="flex items-center gap-2"><MapPin className="w-4 h-4 text-primary" />{space.building}, {space.floor} Floor</div>
+            <div className="flex items-center gap-2"><Layers className="w-4 h-4 text-primary" />{space.spaceType}</div>
+            <div className="flex items-center gap-2"><Users className="w-4 h-4 text-primary" />Capacity: {space.capacity}</div>
+            <div className="flex items-center gap-2"><Clock className="w-4 h-4 text-primary" />{space.openingHours}</div>
           </div>
 
           {/* Occupancy */}
@@ -62,14 +67,14 @@ export default function SpaceDetail() {
             <button
               onClick={() => checkIn(space.id)}
               disabled={space.currentCheckIns >= space.capacity}
-              className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
+              className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:opacity-90 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
             >
               <Plus className="w-4 h-4" /> Check In
             </button>
             <button
               onClick={() => checkOut(space.id)}
               disabled={space.currentCheckIns <= 0}
-              className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg border border-border bg-card text-foreground text-sm font-medium hover:bg-muted transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+              className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg border border-border bg-secondary text-secondary-foreground text-sm font-semibold hover:bg-muted transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
             >
               <Minus className="w-4 h-4" /> Check Out
             </button>
@@ -81,7 +86,7 @@ export default function SpaceDetail() {
               <h2 className="font-display font-semibold text-foreground mb-2">Available Software</h2>
               <div className="flex flex-wrap gap-2">
                 {space.availableSoftware.map(sw => (
-                  <span key={sw} className="px-2.5 py-1 text-xs rounded-full bg-secondary text-secondary-foreground">
+                  <span key={sw} className="px-2.5 py-1 text-xs rounded-full bg-primary/10 text-primary font-medium">
                     {sw}
                   </span>
                 ))}

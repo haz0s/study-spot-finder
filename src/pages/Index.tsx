@@ -37,14 +37,25 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        <div className="flex items-center gap-3 mb-8">
-          <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
+      {/* Header bar */}
+      <header className="bg-primary">
+        <div className="max-w-6xl mx-auto px-4 py-4 flex items-center gap-3">
+          <div className="w-9 h-9 rounded-lg bg-primary-foreground/20 flex items-center justify-center">
             <GraduationCap className="w-5 h-5 text-primary-foreground" />
           </div>
-          <h1 className="font-display text-2xl font-bold text-foreground">MetSpace</h1>
+          <h1 className="font-display text-xl font-bold text-primary-foreground tracking-tight">MetSpace</h1>
         </div>
+      </header>
 
+      {/* Hero strip */}
+      <div className="bg-card border-b border-border">
+        <div className="max-w-6xl mx-auto px-4 py-8">
+          <h2 className="font-display text-2xl font-bold text-foreground mb-1">Find Your Study Space</h2>
+          <p className="text-muted-foreground text-sm">Browse available spaces across campus and check in instantly.</p>
+        </div>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-4 py-8">
         <Dashboard />
 
         <Filters
